@@ -51,6 +51,21 @@ class CurrencyService {
 		return ( new Currency() )
 			->setName( $currentRate->currency )
 			->setCurrencyCode( $currentRate->code )
-			->setExchangeRate( $currentRate->mid );
+			->setExchangeRateAsInt( $currentRate->mid );
+	}
+
+	public function mapRates( $aggregatedData ): array {
+		$arrayCollection = array();
+
+		foreach ( $aggregatedData as $rate ) {
+			$arrayCollection[] = [
+				'id'           => $rate->getId(),
+				'name'         => $rate->getName(),
+				'currencyCode' => $rate->getCurrencyCode(),
+				'exchangeRate' => $rate->getExchangeRateAsDecimal($rate->getExchangeRate())
+			];
+		}
+
+		return $arrayCollection;
 	}
 }

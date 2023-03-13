@@ -64,4 +64,15 @@ class Currency
 
         return $this;
     }
+
+	public function setExchangeRateAsInt(string $exchangeRate ): static {
+		$this->exchangeRate = $exchangeRate * 10000;
+
+		return $this;
+	}
+
+	public function getExchangeRateAsDecimal(string $exchangeRate ): string {
+		$this->exchangeRate = $exchangeRate/10000;
+		return $this->exchangeRate;
+	}
 }
