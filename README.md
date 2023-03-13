@@ -30,3 +30,8 @@ http://{host}/currency/A
 
 Przykład:
 http://127.0.0.1:8000/currency/A
+
+Do budowy aplikacji wykorzystano : 
+PHP ver 8.0
+Symfony ver 5.4
+MySql 8.0
