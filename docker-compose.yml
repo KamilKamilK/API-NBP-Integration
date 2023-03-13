@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  ###> doctrine/doctrine-bundle ###
+  database:
+    image: 'mysql:latest'
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - '3306'
