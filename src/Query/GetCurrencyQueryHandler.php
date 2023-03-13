@@ -18,8 +18,7 @@ class GetCurrencyQueryHandler implements MessageHandlerInterface
 		$this->service = $service;
 		$this->repository = $repository;
 	}
-	public function __invoke( GetCurrencyQuery $query )
-	{
+	public function __invoke( GetCurrencyQuery $query ): array {
 		$ratesTable = $this->service->getExchangeRatesTable($query->getTable());
 		$this->service->createOrUpdateCurrency($ratesTable);
 

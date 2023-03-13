@@ -25,7 +25,7 @@ class NbpClient {
 		return array_values( $response )[0];
 	}
 
-	public function buildUrl( string $table ) {
+	public function buildUrl( string $table ): string {
 		return self::NBP_URL . '/exchangerates/tables/' . $table;
 	}
 }

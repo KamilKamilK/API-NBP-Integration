@@ -7,27 +7,28 @@ namespace App\Service;
 use App\Client\NbpClient;
 use App\Entity\Currency;
 use App\Repository\CurrencyRepository;
+use Doctrine\ORM\EntityManagerInterface;
 
 class CurrencyService {
 	private NbpClient $client;
 	private CurrencyRepository $repository;
+	private EntityManagerInterface $entityManager;
 
-	public function __construct( NbpClient $client, CurrencyRepository $repository ) {
+	public function __construct( NbpClient $client, CurrencyRepository $repository, EntityManagerInterface $entityManager ) {
 
 		$this->client     = $client;
 		$this->repository = $repository;
+		$this->entityManager = $entityManager;
 	}
 
 	public function createOrUpdateCurrency( $ratesTable ): void {
 		$currencyList = $this->currencyList();
 
 		foreach ( $ratesTable->rates as $currentRate ) {
-			$rate = $this->buildCurrency($currentRate);
-
 			if (! in_array($currentRate->code, $currencyList)) {
-				$this->repository->save($rate, true);
+				$this->createCurrency($currentRate);
 			} else{
-				$this->repository->save($rate);
+				$this->updateCurrency( $currentRate);
 			}
 		}
 	}
@@ -49,11 +50,22 @@ class CurrencyService {
 		return $this->repository->findAll();
 	}
 
-	public function buildCurrency( $currentRate ): Currency {
-		return ( new Currency() )
+	public function createCurrency( $currentRate ): void {
+
+		$rate = (new Currency())
 			->setName( $currentRate->currency )
 			->setCurrencyCode( $currentRate->code )
 			->setExchangeRateAsInt( $currentRate->mid );
+		$this->entityManager->persist($rate);
+		$this->entityManager->flush();
+	}
+
+	public function updateCurrency($currentRate): void {
+		$currency = $this->repository->findOneBy(['currencyCode'=> $currentRate->code]);
+
+		$currency->setName($currentRate->currency);
+		$currency->setExchangeRateAsInt($currentRate->mid);
+		$this->entityManager->flush();
 	}
 
 	public function mapRates( $aggregatedData ): array {
