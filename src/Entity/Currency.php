@@ -1,5 +1,6 @@
 <?php
-declare(strict_types=1);
+
+//declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -66,7 +67,10 @@ class Currency
         return $this;
     }
 
-	public function setExchangeRateAsInt(string $exchangeRate ): static {
+	/**
+	 * @param string|float|int $exchangeRate
+	 */
+	public function setExchangeRateAsInt( $exchangeRate ): static {
 		$this->exchangeRate = $exchangeRate * 10000;
 
 		return $this;

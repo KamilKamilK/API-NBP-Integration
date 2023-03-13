@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 namespace App\Query;
 
 use App\Repository\CurrencyRepository;
@@ -23,6 +24,7 @@ class GetCurrencyQueryHandler implements MessageHandlerInterface
 		$this->service->createOrUpdateCurrency($ratesTable);
 
 		return [
+			'rates' => $this->repository->findAll(),
 			'tableNumber'  => $ratesTable->no,
 			'updatingDate' => $ratesTable->effectiveDate
 		];
