@@ -2,7 +2,10 @@
 
 namespace App\Query;
 
-class GetCurrencyQueryHandler
+use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+
+
+class GetCurrencyQueryHandler implements MessageHandlerInterface
 {
 	public function __construct(  ) {
 

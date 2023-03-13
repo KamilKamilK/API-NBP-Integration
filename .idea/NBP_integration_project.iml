@@ -66,6 +66,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/messenger" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/uid" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/apimatic/core-interfaces" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/apimatic/unirest-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/mashape/unirest-php" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

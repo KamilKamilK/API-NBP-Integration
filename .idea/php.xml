@@ -73,6 +73,9 @@
       <path value="$PROJECT_DIR$/vendor/symfony/messenger" />
       <path value="$PROJECT_DIR$/vendor/symfony/uid" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-uuid" />
+      <path value="$PROJECT_DIR$/vendor/apimatic/core-interfaces" />
+      <path value="$PROJECT_DIR$/vendor/apimatic/unirest-php" />
+      <path value="$PROJECT_DIR$/vendor/mashape/unirest-php" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
