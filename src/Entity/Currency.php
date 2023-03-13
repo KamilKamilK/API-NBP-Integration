@@ -4,25 +4,27 @@ namespace App\Entity;
 
 use App\Repository\CurrencyRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: CurrencyRepository::class)]
 class Currency
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column( type: 'uuid', unique: true )]
+    #[ORM\GeneratedValue( strategy: 'CUSTOM' )]
+    #[ORM\CustomIdGenerator( class: 'doctrine.uuid_generator' )]
+    private ?Uuid $id = null;
 
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
     #[ORM\Column(length: 3)]
-    private ?string $currency_code = null;
+    private ?string $currencyCode = null;
 
     #[ORM\Column(length: 10)]
-    private ?string $exchange_rate = null;
+    private ?string $exchangeRate = null;
 
-    public function getId(): ?int
+    public function getId(): ?Uuid
     {
         return $this->id;
     }
@@ -41,24 +43,24 @@ class Currency
 
     public function getCurrencyCode(): ?string
     {
-        return $this->currency_code;
+        return $this->currencyCode;
     }
 
-    public function setCurrencyCode(string $currency_code): self
+    public function setCurrencyCode(string $currencyCode): self
     {
-        $this->currency_code = $currency_code;
+        $this->currencyCode = $currencyCode;
 
         return $this;
     }
 
     public function getExchangeRate(): ?string
     {
-        return $this->exchange_rate;
+        return $this->exchangeRate;
     }
 
-    public function setExchangeRate(string $exchange_rate): self
+    public function setExchangeRate(string $exchangeRate): self
     {
-        $this->exchange_rate = $exchange_rate;
+        $this->exchangeRate = $exchangeRate;
 
         return $this;
     }
