@@ -3,17 +3,17 @@
 namespace App\Query;
 
 class GetCurrencyQuery {
-	private ?string $table;
+	private string $table;
 
-	public function __construct( ?string $table = null ) {
+	public function __construct( string $table ) {
 		$this->table = $table;
 	}
 
-	public function getTable(): ?string {
+	public function getTable(): string {
 		return $this->table;
 	}
 
-	public function setTable( ?string $table ): self {
+	public function setTable( string $table ): self {
 		$this->table = $table;
 
 		return $this;

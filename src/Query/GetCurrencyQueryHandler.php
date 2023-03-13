@@ -23,7 +23,6 @@ class GetCurrencyQueryHandler implements MessageHandlerInterface
 		$this->service->createOrUpdateCurrency($ratesTable);
 
 		return [
-			'rates'        => $this->repository->findAll(),
 			'tableNumber'  => $ratesTable->no,
 			'updatingDate' => $ratesTable->effectiveDate
 		];

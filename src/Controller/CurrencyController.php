@@ -17,6 +17,7 @@ class CurrencyController extends AbstractController {
 
 	#[Route( '/currency/{table}', name: 'app_currency', requirements: [ 'table' => 'A' ], methods: 'GET' )]
 	public function getExchangeRatesTable( string $table ): JsonResponse {
+
 		return $this->manager->getExchangeRatesTable( $table );
 	}
 }

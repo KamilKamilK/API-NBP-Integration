@@ -55,7 +55,7 @@ class CurrencyService {
 	}
 
 	public function mapRates( $aggregatedData ): array {
-		$arrayCollection = array();
+		$arrayCollection = [];
 
 		foreach ( $aggregatedData as $rate ) {
 			$arrayCollection[] = [
